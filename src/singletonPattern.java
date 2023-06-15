@@ -2,13 +2,12 @@ class singleton {
     private static class singleInstanceHolder{
         private static final singleton INSTANCE = new singleton();
     }
-
     public static singleton getInstance(){
         return singleInstanceHolder.INSTANCE;
     }
 }
 
-public class SINGLETON{
+public class singletonPattern{
     public static void main(String[] args){
 
         singleton a = singleton.getInstance();
