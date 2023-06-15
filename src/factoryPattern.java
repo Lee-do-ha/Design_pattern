@@ -1,18 +1,24 @@
 abstract class coffee{
     public abstract int getPrice();
 
+    public abstract String getType();
+
     @Override
     public String toString(){
-        return "this coffee is " + this.getPrice();
+        if(getType() == null){
+            return "다시주문해주세요!!";
+        }else{
+            return "this " + this.getType() + " is " + this.getPrice();
+        }
     }
 }
 
 class coffeeFactory{
     public static coffee getCoffee(String type, int price){
         if("Latte".equalsIgnoreCase(type)){
-            return new Latte(price);
+            return new Latte(type, price);
         }else if("Americano".equalsIgnoreCase(type)){
-            return new Americano(price);
+            return new Americano(type, price);
         }else{
             return new DefaultCoffee();
         }
@@ -30,31 +36,52 @@ class DefaultCoffee extends coffee{
     public int getPrice() {
         return this.price;
     }
+
+    @Override
+    public String getType() {
+        return null;
+    }
 }
 
 class Latte extends coffee{
     private int price;
 
-    public Latte(int price){
+    private String type;
+
+    public Latte(String type, int price){
+        this.type = type;
         this.price = price;
     }
 
     @Override
     public int getPrice() {
         return this.price;
+    }
+
+    @Override
+    public String getType() {
+        return this.type;
     }
 }
 
 class Americano extends coffee{
     private int price;
 
-    public Americano(int price){
+    private String type;
+
+    public Americano(String type, int price){
+        this.type = type;
         this.price = price;
     }
 
     @Override
     public int getPrice() {
         return this.price;
+    }
+
+    @Override
+    public String getType() {
+        return this.type;
     }
 }
 
